@@ -1,0 +1,116 @@
+@{
+  ViewBag.Title = "Frond End - Tiago Perri";
+  Layout = "~/Views/Shared/Base/_Layout.cshtml";
+}
+
+<style>
+  .container_formulario{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 100px;
+  }
+
+  .ui.form{
+    width: 40%;
+  }
+
+  .result_form{
+    margin-left: 60px;
+  }
+</style>
+
+<div class="container_formulario">
+  <form class="ui form error">
+    <div class="required field">
+      <label>Nome</label>
+      <input id="nome_id" type="text" placeholder="Digite seu nome:" onblur="MostrarValor()">
+    </div>
+    <div class="required field">
+      <label>E-mail</label>
+      <input id="email_id" onblur="MostrarValor()" type="email" placeholder="Digite seu e-mail:">
+    </div>
+    <div class="required field">
+      <label>Telefone</label>
+      <input id="fone_id" onblur="MostrarValor()" type="tel" class="masked mask_phone" placeholder="Digite seu telefone:">
+    </div>
+      <div class="required field">
+      <label>Assunto</label>
+      <input id="assunto_id" onblur="MostrarValor()" type="text" placeholder="Assunto:">
+    </div>
+      <div class="required field">
+      <label>Mensagem</label>
+      <textarea id="msg_id" onblur="MostrarValor()" placeholder="Mensagem:"></textarea>
+    </div>
+    <div class="ui submit button" id='salvar' onclick="addSession()">Enviar!</div>
+    <div class="ui error message"></div>              
+  </form>
+
+  <div class="result_form">
+    <h3>Nome:</h3>
+    <p id="nomeDigitado"></p>
+    <h3>Email:</h3>
+    <p id="emailDigitado"></p>
+    <h3>Telefone:</h3>
+    <p id="foneDigitado"></p>
+    <h3>Assunto:</h3>
+    <p id="assuntoDigitado"></p>
+    <h3>Mensagem:</h3>
+    <p id="msgDigitado"></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+//Validação Formulário
+$('.ui.form')
+    .form({
+      fields: {
+        nome_id: {
+          identifier: 'nome_id',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : 'Digite seu nome!'
+          }
+          ]
+        },
+        fone_id: {
+          identifier: 'fone_id',
+          rules: [
+          {
+            type   : 'minLength[9]',
+            prompt : 'Algo deu errado! Confira o Numero'
+          }
+          ]
+        },
+        email_id: {
+          identifier: 'email_id',
+          rules: [
+          {
+            type   : 'email',
+            prompt : 'E-mail nao valido!'
+          }
+          ]
+        },
+        assunto_id: {
+          identifier: 'assunto_id',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : 'Preencha o assunto!'
+          }
+          ]
+        },
+        msg_id: {
+          identifier: 'msg_id',
+          rules: [
+          {
+              type   : 'empty',
+              prompt : 'Mensagem vazia nao vale!'
+          }
+          ]
+        },
+      }
+    })
+    ;
+</script>
